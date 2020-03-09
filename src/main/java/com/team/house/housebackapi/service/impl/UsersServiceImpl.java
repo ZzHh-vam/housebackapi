@@ -44,7 +44,7 @@ public class UsersServiceImpl implements UsersService {
         //加密后与加密的内容相比
         criteria.andPasswordEqualTo(MD5Utils.md5Encrypt(password));
         List<Users> list = usersMapper.selectByExample(usersExample);
-        if (list != null && list.size() == 1){
+        if (list != null && list.size() == 1 && (list.get(0).getIsadmin() == null || list.get(0).getIsadmin().equals("") || list.get(0).getIsadmin() == 2)){
             return list.get(0);
         }else{
             return null;
